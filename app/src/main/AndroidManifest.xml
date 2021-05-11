@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MCSmesterProject7CardsGame">
-        <activity android:name=".Statictics"></activity>
+        <activity android:name=".Game"></activity>
+        <activity android:name=".Statictics" />
         <activity android:name=".AboutApplication" />
         <activity android:name=".MainActivity">
             <intent-filter>
