@@ -15,306 +15,417 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/colorOnPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:id="@+id/RLActionBar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/back" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/aclonica"
-                android:text="7 Card Game"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="0dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/reset" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/RLPlayerInfo"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@id/textView27"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/RLFirst2Players"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <RelativeLayout
-                    android:id="@+id/RLPlayer1Box"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp">
+                    android:id="@+id/RLActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="#FFEA00">
+                    <ImageButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/back" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:text="Moroo"
-                            android:textColor="#000000" />
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/aclonica"
+                        android:text="7 Card Game"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textSize="18sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Cards"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/TVPlayer1Cards"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="0"
-                            android:textColor="#000000" />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/player1" />
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="0dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/reset" />
                 </RelativeLayout>
 
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RLActionBar"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/aclonica"
+                    android:text="Player Informations"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="18sp" />
+
                 <RelativeLayout
-                    android:id="@+id/RLPlayer2Box"
-                    android:layout_width="150dp"
+                    android:id="@+id/RLPlayerInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_below="@id/textView27"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/RLFirst2Players"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/RLPlayer1Box"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:background="#FFEA00">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Moroo"
+                                    android:textColor="#000000" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Cards"
+                                    android:textColor="#000000" />
+
+                                <TextView
+                                    android:id="@+id/TVPlayer1Cards"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="0"
+                                    android:textColor="#000000" />
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_alignParentRight="true"
+                                app:srcCompat="@drawable/player1" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/RLPlayer2Box"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentEnd="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:background="#3D5AFE">
+
+                                <TextView
+                                    android:id="@+id/textView29"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Cards"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Lisa"
+                                    android:textColor="#FFFFFF" />
+
+                                <TextView
+                                    android:id="@+id/TVPlayer2Cards"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="0"
+                                    android:textColor="#FFFFFF" />
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_alignParentRight="true"
+                                app:srcCompat="@drawable/player2" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/RLLast2Players"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/RLFirst2Players">
+
+                        <RelativeLayout
+                            android:id="@+id/RLPlayer3Box"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentEnd="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:background="#C84E0C">
+
+                                <TextView
+                                    android:id="@+id/textView30"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Cards"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Haris"
+                                    android:textColor="#FFFFFF" />
+
+                                <TextView
+                                    android:id="@+id/TVPlayer3Cards"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="0"
+                                    android:textColor="#FFFFFF" />
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_alignParentRight="true"
+                                app:srcCompat="@drawable/player3" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/RLPlayerMeBox"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentStart="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:background="#8049BF">
+
+                                <TextView
+                                    android:id="@+id/textView31"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Cards"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/textView23"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="You"
+                                    android:textColor="#FFFFFF" />
+
+                                <TextView
+                                    android:id="@+id/TVPlayerMeCards"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="0"
+                                    android:textColor="#FFFFFF" />
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_alignParentRight="true"
+                                app:srcCompat="@drawable/playerme" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RLPlayerInfo"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/aclonica"
+                    android:text="Card On Top"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RLPlayerInfo"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="45dp"
+                    android:text="Order"
+                    android:textColor="?attr/colorOnSecondary" />
+
+                <ImageView
+                    android:id="@+id/ImgOrderShape"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/textView24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="40dp"
+                    app:srcCompat="@drawable/not_available_circle" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/COnTop"
+                    android:layout_width="100dp"
                     android:layout_height="150dp"
+                    android:layout_below="@id/textView26"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:foregroundGravity="fill"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    app:cardBackgroundColor="?attr/colorSecondary"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ImgVTopCardShape"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:srcCompat="@drawable/spades" />
+
+                        <TextView
+                            android:id="@+id/TVTopCardNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="A"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/COnTop"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/aclonica"
+                    android:text="Turn Playable Cards"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="18sp" />
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView28"
                     android:layout_alignParentEnd="true">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/HSVListPlayableCards"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="#3D5AFE">
-
-                        <TextView
-                            android:id="@+id/textView29"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Cards"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:text="Lisa"
-                            android:textColor="#FFFFFF" />
-
-                        <TextView
-                            android:id="@+id/TVPlayer2Cards"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="0"
-                            android:textColor="#FFFFFF" />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/player2" />
-                </RelativeLayout>
-
+                        android:orientation="horizontal"></LinearLayout>
+                </HorizontalScrollView>
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/RLLast2Players"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/RLFirst2Players">
-
-                <RelativeLayout
-                    android:id="@+id/RLPlayer3Box"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_alignParentEnd="true">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="#C84E0C">
-
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Cards"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:text="Haris"
-                            android:textColor="#FFFFFF" />
-
-                        <TextView
-                            android:id="@+id/TVPlayer3Cards"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="0"
-                            android:textColor="#FFFFFF" />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/player3" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/RLPlayerMeBox"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_alignParentStart="true">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="#8049BF">
-
-                        <TextView
-                            android:id="@+id/textView31"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Cards"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:text="You"
-                            android:textColor="#FFFFFF" />
-
-                        <TextView
-                            android:id="@+id/TVPlayerMeCards"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="0"
-                            android:textColor="#FFFFFF" />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentRight="true"
-                        app:srcCompat="@drawable/playerme" />
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
