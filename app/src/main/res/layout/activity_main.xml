@@ -29,8 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-		android:onClick="BtnStart_Click"
                 android:background="#00FFFFFF"
+                android:onClick="BtnStart_Click"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/icons8_play_127px" />
         </LinearLayout>
@@ -47,7 +47,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
-		android:onClick="BtnStats_Clicked"
+                android:onClick="BtnStats_Clicked"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/research" />
 
@@ -57,10 +57,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
-		android:onClick="btnAbout_Clicked"
+                android:onClick="btnAbout_Clicked"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/information" />
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

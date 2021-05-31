@@ -45,7 +45,7 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginBottom="0dp"
                         android:background="@android:color/transparent"
-			android:onClick="BtnBack_Click"
+                        android:onClick="BtnBack_Click"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/back" />
 
@@ -71,7 +71,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="0dp"
                         android:background="@android:color/transparent"
-			android:onClick="BtnRestart_Click"
+                        android:onClick="BtnRestart_Click"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/reset" />
                 </RelativeLayout>
