@@ -2,11 +2,15 @@ package com.hammadshahzad.mcsmesterproject7cardsgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +21,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Game extends AppCompatActivity {
@@ -38,16 +43,9 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-	getSupportActionBar().hide();
-    }
-    public void BtnBack_Click(View view) {
-        Intent activity = new Intent(Game.this,MainActivity.class);
-        startActivity(activity);
-        finish();
+        getSupportActionBar().hide();
     }
 
-    public void BtnRestart_Click(View view) {
-    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -162,15 +160,28 @@ public class Game extends AppCompatActivity {
         ((TextView)findViewById(R.id.TVPlayer3Cards)).setText(Players.get(2).size()+"");
         ((TextView)findViewById(R.id.TVPlayerMeCards)).setText(Players.get(3).size()+"");
 
-	new CountDownTimer(60000,4000){
+        new CountDownTimer(12100,4000){
             public void onTick(long millisUntilFinished){
-                Turn();
+                if((currentPlayer==3)){
+                    cancel();
+                    myTurn();
+                }
+                else {
+                    Turn();
+                }
             }
             public  void onFinish(){
 
             }
         }.start();
     }
+
+    public void BtnBack_Click(View view) {
+        Intent activity = new Intent(Game.this,MainActivity.class);
+        startActivity(activity);
+        finish();
+    }
+
     public void BtnRestart_Click(View view) {
     }
     void Turn(){
@@ -199,14 +210,6 @@ public class Game extends AppCompatActivity {
                     @Override
                     public void run() {
                         findViewById(R.id.RLPlayer3Box).animate().scaleXBy(0.3f).scaleYBy(0.3f).setDuration(1500);
-                    }
-                });
-                break;
-            case 3:
-                findViewById(R.id.RLPlayerMeBox).animate().scaleXBy(-0.3f).scaleYBy(-0.3f).setDuration(1500).withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.RLPlayerMeBox).animate().scaleXBy(0.3f).scaleYBy(0.3f).setDuration(1500);
                     }
                 });
                 break;
@@ -403,6 +406,364 @@ public class Game extends AppCompatActivity {
             }
         }.start();
         isGameFirstTurn=false;
+    }
+    void myTurn(){
+        //Free Resource Of Playable Cards
+        PlayableCards.clear();
+        //Animate Current Player
+        findViewById(R.id.RLPlayerMeBox).animate().scaleXBy(-0.3f).scaleYBy(-0.3f).setDuration(1500).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.RLPlayerMeBox).animate().scaleXBy(0.3f).scaleYBy(0.3f).setDuration(1500);
+            }
+        });
+        //Turn
+        //After Playing Card check currentPlayer remains in Game or not.
+        new CountDownTimer(3000,1000){
+            public void onTick(long millisUntilFinished){
+
+            }
+            public  void onFinish(){
+                //Bot Turn
+                if(IsPlayerInGame.get(currentPlayer)) {
+                    //Check Special Cards first
+                    if(!isGameFirstTurn) {
+                        if((onTopCard.Number.equals("2"))&&(recentContinuousPlayed2s > 0)) {
+                            //If Player Have 2 in his Cards then Play it.
+                            for(int i=0; i < Players.get(currentPlayer).size();i++) {
+                                if(Players.get(currentPlayer).get(i).Number.equals(onTopCard.Number)){
+                                    Card tempCard=Players.get(currentPlayer).get(i);
+                                    ArrayList<Card> temp;
+                                    temp = Players.get(currentPlayer);
+                                    temp.remove(temp.get(i));
+                                    Players.set(currentPlayer,temp);
+                                    if(Players.get(currentPlayer).size()==0){
+                                        IsPlayerInGame.set(currentPlayer,false);
+                                    }
+                                    TurnCommonPart(tempCard);
+                                    recentContinuousPlayed2s++;
+                                    new CountDownTimer(12100,4000){
+                                        public void onTick(long millisUntilFinished){
+                                            if((currentPlayer==3)){
+                                                cancel();
+                                                myTurn();
+                                            }
+                                            else {
+                                                Turn();
+                                            }
+                                        }
+                                        public  void onFinish(){
+
+                                        }
+                                    }.start();
+                                    return;
+                                }
+                            }
+                            //If not then Draw Card * recentContinousPlayed2s fromDrawPile and Turn Skipped.
+                            for(int i = 0; i< recentContinuousPlayed2s * 2; i++) {
+                                ArrayList<Card> temp;
+                                temp = Players.get(currentPlayer);
+                                temp.add(drawPile.get(0));
+                                drawPile.remove(0);
+                                Players.set(currentPlayer, temp);
+                            }
+                            currentPlayer=(currentPlayer+1)%4;
+                            ChangeEachPlayerCardCount();
+                            recentContinuousPlayed2s =0;
+                            new CountDownTimer(12100,4000){
+                                public void onTick(long millisUntilFinished){
+                                    if((currentPlayer==3)){
+                                        cancel();
+                                        myTurn();
+                                    }
+                                    else {
+                                        Turn();
+                                    }
+                                }
+                                public  void onFinish(){
+
+                                }
+                            }.start();
+                            return;
+                        }
+                        if((onTopCard.Number.equals("8"))&&(!isTurnSkipped)){
+                            for(int i=0; i < Players.get(currentPlayer).size();i++) {
+                                if(Players.get(currentPlayer).get(i).Number.equals(onTopCard.Number)){
+                                    Card tempCard=Players.get(currentPlayer).get(i);
+                                    ArrayList<Card> temp;
+                                    temp = Players.get(currentPlayer);
+                                    temp.remove(i);
+                                    Players.set(currentPlayer,temp);
+                                    if(Players.get(currentPlayer).size()==0){
+                                        IsPlayerInGame.set(currentPlayer,false);
+                                    }
+                                    TurnCommonPart(tempCard);
+                                    isTurnSkipped=false;
+                                    new CountDownTimer(12100,4000){
+                                        public void onTick(long millisUntilFinished){
+                                            if((currentPlayer==3)){
+                                                cancel();
+                                                myTurn();
+                                            }
+                                            else {
+                                                Turn();
+                                            }
+                                        }
+                                        public  void onFinish(){
+
+                                        }
+                                    }.start();
+                                    return;
+                                }
+                            }
+                            //Special Card 8 used Only for Next One Player
+                            currentPlayer=(currentPlayer+1)%4;
+                            isTurnSkipped=true;
+                            new CountDownTimer(12100,4000){
+                                public void onTick(long millisUntilFinished){
+                                    if((currentPlayer==3)){
+                                        cancel();
+                                        myTurn();
+                                    }
+                                    else {
+                                        Turn();
+                                    }
+                                }
+                                public  void onFinish(){
+
+                                }
+                            }.start();
+                            return;
+                        }
+                        if(onTopCard.Number.equals("J")){
+                            //Get Playable Cards based on OrderShape.
+                            ArrayList<Integer> index=new ArrayList<Integer>();
+                            for(int i=0; i < Players.get(currentPlayer).size();i++) {
+                                if(Players.get(currentPlayer).get(i).Shape.equals(orderShape)){
+                                    PlayableCards.add(Players.get(currentPlayer).get(i));
+                                    index.add(i);
+                                }
+                            }
+                            //Draw Card If not Found.
+                            if(PlayableCards.size()==0){
+                                ArrayList<Card> temp;
+                                temp = Players.get(currentPlayer);
+                                temp.add(drawPile.get(0));
+                                drawPile.remove(0);
+                                Players.set(currentPlayer, temp);
+                                currentPlayer=(currentPlayer+1)%4;
+                                ChangeEachPlayerCardCount();
+                                new CountDownTimer(12100,4000){
+                                    public void onTick(long millisUntilFinished){
+                                        if((currentPlayer==3)){
+                                            cancel();
+                                            myTurn();
+                                        }
+                                        else {
+                                            Turn();
+                                        }
+                                    }
+                                    public  void onFinish(){
+
+                                    }
+                                }.start();
+                                return;
+                            }
+                            //Randomly Select One Card from Playable Cards and Play it.
+                            ((ImageView)findViewById(R.id.ImgOrderShape)).setImageResource(R.drawable.not_available_circle);
+                            //todo Ye Part change hona
+                            for(int i=0;i<PlayableCards.size();i++){
+                                View view = getLayoutInflater().inflate(R.layout.card,null);
+                                RelativeLayout relativeLayout=view.findViewById(R.id.RLMyCard);
+                                ((ImageView)view.findViewById(R.id.ImgVCardShape)).setImageResource(GetShapeImage(PlayableCards.get(i).Shape));
+                                ((TextView)view.findViewById(R.id.TVCardNumber)).setText(PlayableCards.get(i).Number);
+                                int finalI = i;
+                                relativeLayout.setOnClickListener(view1 -> {
+                                    int selected=index.get(finalI);
+                                    int previousPlayer=currentPlayer;
+                                    ArrayList<Card> temp;
+                                    temp = Players.get(currentPlayer);
+                                    temp.remove(selected);
+                                    Players.set(currentPlayer,temp);
+                                    if(Players.get(currentPlayer).size()==0){
+                                        IsPlayerInGame.set(currentPlayer,false);
+                                    }
+                                    TurnCommonPart(PlayableCards.get(finalI));
+                                    //If Selected Card is 2 then recentContinuousPlayed2s++
+                                    if(PlayableCards.get(finalI).Number.equals("2")) {
+                                        recentContinuousPlayed2s++;
+                                    }
+                                    //check is card 8
+                                    if(PlayableCards.get(finalI).Number.equals("8")) {
+                                        isTurnSkipped=false;
+                                    }
+                                    //If Selected Card is J then Take Order.
+                                    if(PlayableCards.get(finalI).Number.equals("J")) {
+                                        switch (Players.get(previousPlayer).get(0).Shape)
+                                        {
+                                            case "Spades":
+                                                orderShape="Spades";
+                                                break;
+                                            case "Hearts":
+                                                orderShape="Hearts";
+                                                break;
+                                            case "Clubs":
+                                                orderShape="Clubs";
+                                                break;
+                                            case "Diamonds":
+                                                orderShape="Diamonds";
+                                                break;
+                                        }
+                                        ((ImageView)findViewById(R.id.ImgOrderShape)).setImageResource(GetShapeImage(orderShape));
+                                    }
+                                    RemoveAllMyCards();
+                                    new CountDownTimer(12100,4000){
+                                        public void onTick(long millisUntilFinished){
+                                            if((currentPlayer==3)){
+                                                cancel();
+                                                myTurn();
+                                            }
+                                            else {
+                                                Turn();
+                                            }
+                                        }
+                                        public  void onFinish(){
+
+                                        }
+                                    }.start();
+                                });
+                                ((LinearLayout)findViewById(R.id.HSVListPlayableCards)).addView(view);
+                            }
+                            return;
+                        }
+                    }
+                    //Just Play Normal Turn Skip Special Cards Part.
+                    ArrayList<Integer> index=new ArrayList<Integer>();
+                    for(int i=0; i < Players.get(currentPlayer).size();i++) {
+                        if(Players.get(currentPlayer).get(i).Shape.equals(onTopCard.Shape)||Players.get(currentPlayer).get(i).Number.equals(onTopCard.Number)){
+                            PlayableCards.add(Players.get(currentPlayer).get(i));
+                            index.add(i);
+                        }
+                    }
+                    //Draw Card If not Found.
+                    if(PlayableCards.size()==0){
+                        ArrayList<Card> temp;
+                        temp = Players.get(currentPlayer);
+                        temp.add(drawPile.get(0));
+                        drawPile.remove(0);
+                        Players.set(currentPlayer, temp);
+                        currentPlayer=(currentPlayer+1)%4;
+                        ChangeEachPlayerCardCount();
+                        new CountDownTimer(12100,4000){
+                            public void onTick(long millisUntilFinished){
+                                if((currentPlayer==3)){
+                                    cancel();
+                                    myTurn();
+                                }
+                                else {
+                                    Turn();
+                                }
+                            }
+                            public  void onFinish(){
+
+                            }
+                        }.start();
+                        return;
+                    }
+                    //Randomly Select One Card from Playable Cards and Play it.
+                    //todo ye bi
+                    for(int i=0;i<PlayableCards.size();i++){
+                        View view = getLayoutInflater().inflate(R.layout.card,null);
+                        RelativeLayout relativeLayout=view.findViewById(R.id.RLMyCard);
+                        ((ImageView)view.findViewById(R.id.ImgVCardShape)).setImageResource(GetShapeImage(PlayableCards.get(i).Shape));
+                        ((TextView)view.findViewById(R.id.TVCardNumber)).setText(PlayableCards.get(i).Number);
+                        int finalI = i;
+                        relativeLayout.setOnClickListener(view1 -> {
+                            int selected=index.get(finalI);
+                            int previousPlayer=currentPlayer;
+                            ArrayList<Card> temp;
+                            temp = Players.get(currentPlayer);
+                            temp.remove(selected);
+                            Players.set(currentPlayer,temp);
+                            if(Players.get(currentPlayer).size()==0){
+                                IsPlayerInGame.set(currentPlayer,false);
+                            }
+                            TurnCommonPart(PlayableCards.get(finalI));
+                            //If Selected Card is 2 then recentContinuousPlayed2s++
+                            if(PlayableCards.get(finalI).Number.equals("2")) {
+                                recentContinuousPlayed2s++;
+                            }
+                            //check is card 8
+                            if(PlayableCards.get(finalI).Number.equals("8")) {
+                                isTurnSkipped=false;
+                            }
+                            //If Selected Card is J then Take Order.
+                            if(PlayableCards.get(finalI).Number.equals("J")) {
+                                switch (Players.get(previousPlayer).get(0).Shape)
+                                {
+                                    case "Spades":
+                                        orderShape="Spades";
+                                        break;
+                                    case "Hearts":
+                                        orderShape="Hearts";
+                                        break;
+                                    case "Clubs":
+                                        orderShape="Clubs";
+                                        break;
+                                    case "Diamonds":
+                                        orderShape="Diamonds";
+                                        break;
+                                }
+                                ((ImageView)findViewById(R.id.ImgOrderShape)).setImageResource(GetShapeImage(orderShape));
+                            }
+                            RemoveAllMyCards();
+                            new CountDownTimer(12100,4000){
+                                public void onTick(long millisUntilFinished){
+                                    if((currentPlayer==3)){
+                                        cancel();
+                                        myTurn();
+                                    }
+                                    else {
+                                        Turn();
+                                    }
+                                }
+                                public  void onFinish(){
+
+                                }
+                            }.start();
+                        });
+                        ((LinearLayout)findViewById(R.id.HSVListPlayableCards)).addView(view);
+                    }
+                    return;
+                }
+                else {
+                    //Skip Player
+                    currentPlayer=(currentPlayer+1)%4;
+                    new CountDownTimer(12100,4000){
+                        public void onTick(long millisUntilFinished){
+                            if((currentPlayer==3)){
+                                cancel();
+                                myTurn();
+                            }
+                            else {
+                                Turn();
+                            }
+                        }
+                        public  void onFinish(){
+
+                        }
+                    }.start();
+                }
+
+            }
+        }.start();
+        isGameFirstTurn=false;
+    }
+    void RemoveAllMyCards(){
+        for (int i = 0;i<PlayableCards.size();i++){
+            LinearLayout layout= ((LinearLayout)findViewById(R.id.HSVListPlayableCards));
+            layout.removeAllViewsInLayout();
+        }
     }
     void TurnCommonPart(Card card){
         drawPile.add(onTopCard);
