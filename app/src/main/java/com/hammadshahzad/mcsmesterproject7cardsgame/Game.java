@@ -496,6 +496,8 @@ public class Game extends AppCompatActivity {
                                     Players.set(currentPlayer,temp);
                                     if(Players.get(currentPlayer).size()==0){
                                         IsPlayerInGame.set(currentPlayer,false);
+                                         TurnCommonPart(tempCard);
+                                         return;
                                     }
                                     TurnCommonPart(tempCard);
                                     isTurnSkipped=false;
@@ -587,6 +589,8 @@ public class Game extends AppCompatActivity {
                                     Players.set(currentPlayer,temp);
                                     if(Players.get(currentPlayer).size()==0){
                                         IsPlayerInGame.set(currentPlayer,false);
+                                        TurnCommonPart(PlayableCards.get(finalI));
+                                        return;   
                                     }
                                     TurnCommonPart(PlayableCards.get(finalI));
                                     //If Selected Card is 2 then recentContinuousPlayed2s++
@@ -687,6 +691,8 @@ public class Game extends AppCompatActivity {
                             Players.set(currentPlayer,temp);
                             if(Players.get(currentPlayer).size()==0){
                                 IsPlayerInGame.set(currentPlayer,false);
+                                TurnCommonPart(PlayableCards.get(finalI));
+                                return;
                             }
                             TurnCommonPart(PlayableCards.get(finalI));
                             //If Selected Card is 2 then recentContinuousPlayed2s++
